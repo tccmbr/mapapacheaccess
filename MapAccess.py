@@ -67,7 +67,6 @@ class MapAccess:
         for l in log_access.readlines():
             result = self.filter_ip(l)
             if result:
-                access_ip = result.group()
                 result = self.filter_url(l)
                 if result:
                     # captura a url
@@ -85,15 +84,14 @@ class MapAccess:
     def filter_ip(self, l):
         ip_split = self.ip.split('.')
         expressao = '[' + ip_split[0] + ']{' + str(len(ip_split[0])) + '}.[' + ip_split[1] + ']{' + str(
-            len(ip_split[1])) + '}.[' \
-                    + ip_split[2] + ']{' + str(len(ip_split[2])) + '}.[' + ip_split[3] + ']{' + str(
-            len(ip_split[3])) + '}'
+            len(ip_split[1])) + '}.['+ip_split[2] + ']{' + str(len(ip_split[2])) + '}.[' + ip_split[3] + ']{'\
+            + str(len(ip_split[3]))+'}'
 
         return re.search(expressao, l)
 
     @staticmethod
     def filter_url(l):
-        return re.search('([GET?POST]{3,4}\s[a-zA-Z0-9_\/\?@&%=-]+)+', l)
+        return re.search('([GE?POS]{2,3}T\s[a-zA-Z0-9_/\?@&%=-]+)+', l)
 
     @staticmethod
     def filter_data_hora(l):
