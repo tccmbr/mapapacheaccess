@@ -6,7 +6,7 @@ import re
 
 class MapAccess:
 
-    diretorio_log = 'log/'
+    diretorio_log = 'logs/'
 
     def __init__(self, ip, palavra_chave):
         self.ip = ip
