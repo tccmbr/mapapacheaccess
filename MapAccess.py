@@ -39,7 +39,7 @@ class MapAccess:
 
     def search(self):
         log = open(self.diretorio_log+'log_access_'+self.ip+'.log', 'r')
-        result_file = open(self.diretorio_log+'result.txt', 'a')
+        result_file = open(self.diretorio_log+'result_'+self.ip+'.txt', 'a')
 
         for l in log.readlines():
             result = re.search(self.palavra_chave, l)
@@ -82,16 +82,11 @@ class MapAccess:
         log_access.close()
 
     def filter_ip(self, l):
-        ip_split = self.ip.split('.')
-        expressao = '[' + ip_split[0] + ']{' + str(len(ip_split[0])) + '}.[' + ip_split[1] + ']{' + str(
-            len(ip_split[1])) + '}.['+ip_split[2] + ']{' + str(len(ip_split[2])) + '}.[' + ip_split[3] + ']{'\
-            + str(len(ip_split[3]))+'}'
-
-        return re.search(expressao, l)
+        return re.search(self.ip, l)
 
     @staticmethod
     def filter_url(l):
-        return re.search('([GE?POS]{2,3}T\s[a-zA-Z0-9_/\?@&%=-]+)+', l)
+        return re.search('[GE?POS]{2,3}T\s[a-zA-Z0-9_/\?@&%=.-]+', l)
 
     @staticmethod
     def filter_data_hora(l):
