@@ -14,7 +14,13 @@ class Application:
         self.palavra_chave = raw_input('Palavra chave = ')
 
         self.map_access_usuario = MapAccess.MapAccess(self.ip, self.palavra_chave)
-        self.__init__()
+
+        nova_pesquisa = raw_input('Pesquisar novamente? [y,n] ')
+
+        if nova_pesquisa.lower() == 'y':
+            self.__init__()
+
+        print 'Bye!'
 
 if __name__ == '__main__':
     app = Application()

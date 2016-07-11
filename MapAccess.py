@@ -17,15 +17,18 @@ class MapAccess:
         except ValueError as e:
             print e
         else:
-            print "\n"
-            print 'processando...'
-            self.process()
-            print "\n"
-            print 25*'='
-            print 5*' '+'RESULTADO'
-            print 25 * '='
-            self.search()
-            print "\n"
+            try:
+                print "\n"
+                print 'processando...'
+                self.process()
+                print "\n"
+                print 25*'='
+                print 5*' '+'RESULTADO'
+                print 25 * '='
+                self.search()
+                print "\n"
+            except IOError as e:
+                print e
 
     def valida_ip(self):
         ip = self.ip.split('.')
