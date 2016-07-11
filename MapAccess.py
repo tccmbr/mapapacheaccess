@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import os
 
 
 class MapAccess:
@@ -18,6 +19,9 @@ class MapAccess:
             print e
         else:
             try:
+                if not os.path.exists(self.diretorio_log):
+                    os.mkdir(self.diretorio_log, 0775)
+
                 print "\n"
                 print 'processando...'
                 self.process()
