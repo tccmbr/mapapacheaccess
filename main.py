@@ -19,8 +19,8 @@ class Application:
 
         if nova_pesquisa.lower() == 'y':
             self.__init__()
-
-        print 'Bye!'
+        else:
+            print 'Bye!'
 
 if __name__ == '__main__':
     app = Application()

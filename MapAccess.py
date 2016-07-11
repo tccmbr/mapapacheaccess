@@ -41,7 +41,7 @@ class MapAccess:
             raise ValueError('Ip inválido!')
 
         for n in ip:
-            if re.match('[a-zA-Z]+', n):
+            if len(n) == 0 or re.search('[\D]', n):
                 raise ValueError('Ip inválido!')
 
     def search(self):
@@ -93,8 +93,8 @@ class MapAccess:
 
     @staticmethod
     def filter_url(l):
-        return re.search('[GE?POS]{2,3}T\s[a-zA-Z0-9_/\?@&%=.-]+', l)
+        return re.search('(GET|POST)+\s[\w/?@&%=.-]+', l)
 
     @staticmethod
     def filter_data_hora(l):
-        return re.search('[0-9]+/[a-zA-Z]+/[0-9]+:[0-9]+:[0-9]+:[0-9]+', l)
+        return re.search('[\d]+/[a-zA-Z]+/[\d]+:[\d]+:[\d]+:[\d]+', l)
